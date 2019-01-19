@@ -1,0 +1,35 @@
+.sign-in-button {
+    border: none;
+    background-color: #4285F4;
+    color: #fff;
+    padding: 1px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.sign-in-button:active {
+    background-color: #3367D6;    
+}
+
+.google-button-icon {
+    background: #fff;
+    padding: 8px;
+    float: left;
+}
+
+.google-image {
+    width: 18px;
+    height: 18px;
+}
+
+.google-button-icon svg {
+    vertical-align: top;
+}
+
+.button-content {
+    font-size: 13px;
+    line-height: 34px;
+    font-family: Roboto,arial,sans-serif;
+    font-weight: bold;
+    margin: 0 15px;
+}
