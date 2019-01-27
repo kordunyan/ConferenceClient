@@ -1,0 +1,42 @@
+<h5 mat-dialog-title>New Conference</h5>
+<div mat-dialog-content>
+  <form class="mt-4 mb-4" #newConferenceForm="ngForm">
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text"
+              required
+              [ngClass]="{'is-invalid' : title.touched && title.invalid}"
+              [(ngModel)]="newConference.title"
+              name="title"
+              #title="ngModel"
+               class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Subject</label>
+      <div class="col-sm-10">
+        <input type="text"
+              required
+              appUniqueFieldConfigValidator
+              [ngModelOptions]="{updateOn: 'blur'}"
+              [ngClass]="{'is-invalid' : subject.touched && subject.invalid}"
+              [(ngModel)]="newConference.subject"
+              name="subject" 
+              #subject="ngModel"
+              class="form-control">
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <div class="text-right w-100">
+    <button class="btn btn-light mr-2"
+            (click)="onCancel()">Cancel
+    </button>
+    <button class="btn btn-primary"
+            [disabled]="!newConferenceForm.form.valid"
+            (click)="addConference()">Add
+    </button>
+  </div>
+</div>

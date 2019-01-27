@@ -34,11 +34,11 @@ export class TokenStorageService {
     }
 
     private changeSessionItem(key, value) {
-        window.sessionStorage.removeItem(key);
-        window.sessionStorage.setItem(key, value);
+        window.localStorage.removeItem(key);
+        window.localStorage.setItem(key, value);
     }
     
     private getSessionItem(key) {
-        return window.sessionStorage.getItem(key);
+        return window.localStorage.getItem(key);
     }
 }

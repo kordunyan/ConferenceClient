@@ -1,0 +1,16 @@
+<ul class="navbar-nav my-2 my-lg-0">
+  <li class="nav-item" *ngIf="!tokenStorageService.isSignedIn()">
+    <button mat-button (click)="goToSignIn()">Sign in</button>
+  </li>
+  <li class="nav-item dropdown" dropdown *ngIf="tokenStorageService.isSignedIn()">
+    <a class="nav-link dropdown-toggle cursor-p" dropdownToggle >
+      {{tokenStorageService.getUsername()}}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+      <a class="dropdown-item cursor-p" (click)="singOut()">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> 
+          Sign out
+      </a>
+    </div>
+  </li>
+</ul>

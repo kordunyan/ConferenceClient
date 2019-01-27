@@ -4,6 +4,7 @@ import { RedirectHandlerComponent } from './redirect-handler/redirect-handler.co
 import { LoginComponent } from './login/login.component';
 import { AuthOutletComponent } from './auth-outlet/auth-outlet.component';
 import { AuthRoutingModule } from './auth-routing,module';
+import { MaterialModule } from 'src/app/shared/modules/material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AuthRoutingModule } from './auth-routing,module';
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    MaterialModule
   ],
   exports: [
     AuthRoutingModule
