@@ -7,13 +7,17 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { MaterialModule } from '../modules/material.module';
 import { BootstrapModule } from '../modules/bootstrap.module';
 import { UserNavComponent } from './user-nav/user-nav.component';
+import { ChipsInputComponent } from './chips-input/chips-input.component';
+import { UploadFileProgressDialogComponent } from './dialog/upload-file-progress-dialog/upload-file-progress-dialog.component';
 
 
 @NgModule({
   declarations: [
     NavComponent,
     SpinnerComponent,
-    UserNavComponent
+    UserNavComponent,
+    ChipsInputComponent,
+    UploadFileProgressDialogComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,11 @@ import { UserNavComponent } from './user-nav/user-nav.component';
   ],
   exports: [
     NavComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ChipsInputComponent
+  ],
+  entryComponents: [
+    UploadFileProgressDialogComponent
   ]
 })
 export class SharedComponentsModule { }

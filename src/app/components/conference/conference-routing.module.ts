@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConferenceRootComponent } from './conference-root/conference-root.component';
 import { ConferenceListComponent } from './conference-list/conference-list.component';
+import { DetailPageComponent } from './conference-detail/detail-page/detail-page.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
       {
         path: '',
         component: ConferenceListComponent
+      },
+      {
+        path: ':id',
+        component: DetailPageComponent
       }
     ]
   }

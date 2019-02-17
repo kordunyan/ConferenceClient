@@ -1,0 +1,19 @@
+<mat-form-field class="chip-list">
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let value of valuesList" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(value)">
+      {{value}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input [placeholder]="placeholder"
+           [matChipInputFor]="chipList"
+           [formControl]="emailFormControl"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+<div class="invalid-feedback" *ngIf="emailFormControl.hasError('email')">
+    {{ errorMessage }}
+</div>
+

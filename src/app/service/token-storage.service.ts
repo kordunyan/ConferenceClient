@@ -10,7 +10,7 @@ const USERNAME_KEY = 'AuthUsername';
 export class TokenStorageService {
     
     public signOut() {
-        window.sessionStorage.clear();
+        window.localStorage.clear();
     }
 
     public isSignedIn(): boolean {

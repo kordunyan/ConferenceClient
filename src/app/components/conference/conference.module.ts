@@ -8,6 +8,10 @@ import { AddConferenceComponent } from './add-conference/add-conference.componen
 import { AddConferenceDialogComponent } from './add-conference-dialog/add-conference-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { CustomDirectivesModule } from 'src/app/shared/directive/custom-directives.module';
+import { DetailPageComponent } from './conference-detail/detail-page/detail-page.component';
+import { SendEmailComponent } from './conference-detail/send-email/send-email.component';
+import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
 
 
 @NgModule({
@@ -15,14 +19,17 @@ import { CustomDirectivesModule } from 'src/app/shared/directive/custom-directiv
     ConferenceRootComponent, 
     ConferenceListComponent, 
     AddConferenceComponent, 
-    AddConferenceDialogComponent,
+    AddConferenceDialogComponent, 
+    DetailPageComponent, 
+    SendEmailComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     CustomDirectivesModule,
     ConferenceRoutingModule,
-    
+    MaterialModule,
+    SharedComponentsModule
   ],
   entryComponents: [
     AddConferenceDialogComponent

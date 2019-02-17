@@ -1,0 +1,9 @@
+<div class="card mt-4" *ngIf="conference">
+  <div class="card-header">
+    Conference: <b>{{ conference.title }}</b> 
+    <small class="float-right">{{ conference.dateCreated }}</small>
+  </div>
+  <div class="card-body">
+    <app-send-email></app-send-email>
+  </div>
+</div>

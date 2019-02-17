@@ -19,7 +19,7 @@ export class AddConferenceDialogComponent {
   }
   
   addConference() {
-    console.log(this.newConference);
+    this.dialogRef.close(this.newConference);
   }
 
 }

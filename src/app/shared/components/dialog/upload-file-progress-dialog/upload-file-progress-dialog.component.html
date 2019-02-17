@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Upload Files</h1>
+<mat-dialog-content>
+  <div class="alert alert-danger" role="alert" *ngIf="hasError">
+    <b>Error!</b> Failed to upload or precess files
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let file of files">
+      <h4 mat-line>{{file.name}}</h4>
+      <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress[file.name].progress | async"></mat-progress-bar>
+    </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <div class="text-right w-100">
+      <button class="btn btn-light mr-2" 
+              (click)="onCancel()">Cancel</button>
+      <button class="btn btn-primary" 
+              (click)="confirmUpload()"
+              [disabled]="!isLoaded"
+              cdkFocusInitial>Ok</button>
+  </div>
+</div>

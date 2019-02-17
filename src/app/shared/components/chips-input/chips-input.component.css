@@ -1,0 +1,8 @@
+.chip-list {
+    width: 100%;
+}
+
+.invalid-feedback {
+    margin-top: -16px;
+    display: block;
+}
