@@ -3,13 +3,17 @@
     <button mat-button (click)="goToSignIn()">Sign in</button>
   </li>
   <li class="nav-item dropdown" dropdown *ngIf="tokenStorageService.isSignedIn()">
-    <a class="nav-link dropdown-toggle cursor-p" dropdownToggle >
+    <a class="nav-link dropdown-toggle cursor-p" dropdownToggle>
       {{tokenStorageService.getUsername()}}
     </a>
     <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+      <a class="dropdown-item cursor-p" routerLink="/user/config">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        Settings
+      </a>
       <a class="dropdown-item cursor-p" (click)="singOut()">
-          <i class="fa fa-sign-out" aria-hidden="true"></i> 
-          Sign out
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        Sign out
       </a>
     </div>
   </li>

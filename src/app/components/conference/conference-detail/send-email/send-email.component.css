@@ -1,5 +1,9 @@
-.btn-upload {
-    min-width: 36px;
-    padding: 0 10px;
-    margin-top: 12px;
+:host ::ng-deep .ck-editor__editable {
+    min-height: 250px;
+}
+
+.invite-files-list {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

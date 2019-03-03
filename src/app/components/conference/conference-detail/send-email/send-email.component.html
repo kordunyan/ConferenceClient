@@ -1,15 +1,37 @@
-<div class="row">
-    <div class="col-md-11">
-        <app-chips-input 
-            [validators]="emailsToValidators"
-            errorMessage="Email address is invalid"
-            [valuesList]="emailsTo"
-            placeholder="To">
-        </app-chips-input>
+<form>
+    <app-emails-to class="row" [validationStatus]="validationStatus" [emailsTo]="conference.emailsTo"></app-emails-to>
+    <div class="row mt-1">
+        <div class="col-md-1">
+            <label for="subject" class="col-form-label">Subject</label>
+        </div>
+        <div class="col-md-11">
+            <input type="text" 
+                    required
+                    name="subbject" 
+                    #subject="ngModel"
+                    [ngClass]="{'is-invalid': subject.touched && subject.invalid}"
+                    class="form-control" 
+                    id="subject" 
+                    [(ngModel)]="conference.subject">
+            <div class="invalid-feedback" *ngIf="subject.touched && subject.errors?.required">
+                Subject is required
+            </div>
+        </div>
     </div>
-    <div class="col">
-        <button mat-raised-button class="btn-upload" (click)="uploadEmailsTo()">
-            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-        </button>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <ckeditor [editor]="editor" name="content" [(ngModel)]="conference.emailContent"></ckeditor>
+            <div class="invalid-feedback d-block" *ngIf="validationStatus.invalidEmailContent">
+                Email content is required
+            </div>
+        </div>
     </div>
-</div>
+
+    <app-invitation-files [validationStatus]="validationStatus" [invitationFiles]="invitationFiles" class="row mt-4"></app-invitation-files>
+
+    <div class="row mt-4">
+        <div class="col text-right">
+            <button class="btn btn-primary" (click)="sendEmail()" type="submit">Send</button>
+        </div>
+    </div>
+</form>

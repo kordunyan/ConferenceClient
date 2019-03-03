@@ -6,5 +6,4 @@ export class FileUtils {
         }
         return fileName.substr(fileName.lastIndexOf('.') + 1);
     }
-
 }

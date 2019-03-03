@@ -4,6 +4,6 @@
     <small class="float-right">{{ conference.dateCreated }}</small>
   </div>
   <div class="card-body">
-    <app-send-email></app-send-email>
+    <app-send-email *ngIf="!conference.emailSent" [conference]="conference"></app-send-email>
   </div>
 </div>

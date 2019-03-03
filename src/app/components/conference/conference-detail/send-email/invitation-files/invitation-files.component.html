@@ -1,0 +1,20 @@
+<div class="col-md-1">
+    <label for="subject" class="col-form-label">Invite</label>
+</div>
+<div class="col-md-11">
+    <div class="row">
+        <div class="col-sm-4" *ngIf="invitationFiles.size">
+            <ul class="list-unstyled invite-files-list mt-2">
+                <app-invite-file *ngFor="let file of invitationFiles" [file]="file" (deleteFile)="deleteFile($event)"></app-invite-file>
+            </ul>
+        </div>
+        <div class="col-sm-3">
+            <button mat-raised-button class="btn-upload mt-2" (click)="chooseInviteFile()">
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div class="invalid-feedback d-block" *ngIf="validationStatus.invalidInvitationFile">
+        Email content is required
+    </div>
+</div>

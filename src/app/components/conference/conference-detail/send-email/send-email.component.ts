@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { FileUploadService } from 'src/app/service/file-upload.service';
-import { ArrayUtils } from 'src/app/utils/array.utils';
+import { Component, Input, OnInit } from '@angular/core';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Conference } from 'src/app/domain/conference';
+import { SendConferenceEmailDto } from 'src/app/dto/send-conference-email.dto';
+import { ConferenceHttpService } from 'src/app/service/http/conference.http.service';
 
 @Component({
   selector: 'app-send-email',
@@ -9,42 +10,48 @@ import { ArrayUtils } from 'src/app/utils/array.utils';
   styleUrls: ['./send-email.component.css']
 })
 export class SendEmailComponent implements OnInit {
-
-  emailsTo: string[] = [];
-  emailsToValidators = [Validators.email];
+  
+  editor = ClassicEditor;
+  @Input() conference: Conference;
+  invitationFiles: Set<File> = new Set();
+  validationStatus = new ValidationStatus();
 
   constructor(
-    private fileUploadService: FileUploadService
+    private conferenceHttpService: ConferenceHttpService
   ) {
-
-
   }
 
   ngOnInit() {
-  }
-
-  uploadEmailsTo() {
-    this.fileUploadService.uploadFile('/parse-emails', ['txt'])
-      .subscribe(result => {
-        this.fillUploadedEmails(result); 
-      });
-  }
-
-  fillUploadedEmails(emailArrays: string[][]) {
-    if (ArrayUtils.isEmpty(emailArrays)) {
-      return;
+    if (!this.conference.emailContent) {
+      this.conference.emailContent = '';
     }
-    emailArrays.forEach(emails => {
-      if (ArrayUtils.isEmpty(emails)) {
-        return;
-      }
-      emails.forEach(email => {
-        if (this.emailsTo.indexOf(email) < 0) {
-          this.emailsTo.push(email);
-        }
-      });
-    });
-
   }
 
+  sendEmail() {
+    // if (this.validate()) {
+    //   return;
+    // }
+    this.conferenceHttpService.sendConferenceEmail(SendConferenceEmailDto.build(this.conference, this.invitationFiles))
+      .subscribe(result => {
+        console.log(result);
+      }, error => console.log(error));
+  }
+
+  validate() {
+    const status = this.validationStatus; 
+    status.invalidEmailsTo = !this.conference.emailsTo.length;
+    status.invalidSubject = !this.conference.subject.length;
+    status.invalidEmailContent = !this.conference.emailContent.length;
+    status.invalidInvitationFile = !this.invitationFiles.size;
+
+    return status.invalidEmailsTo || status.invalidSubject || status.invalidEmailContent || status.invalidInvitationFile;
+  }
+
+}
+
+export class ValidationStatus {
+  public invalidEmailsTo = false;
+  public invalidSubject = false;
+  public invalidEmailContent = false;
+  public invalidInvitationFile = false;
 }

@@ -1,0 +1,22 @@
+<div class="col-md-1">
+  <label for="subject" class="col-form-label">To</label>
+</div>
+<div class="col-md-10">
+  <app-chips-input [validators]="emailsToValidators" 
+                    [getValueFunction]="getValueFunction()"
+                    [createOptionFunction]="createOptionFunction()"
+                    errorMessage="Email address is invalid" 
+                    [valuesList]="emailsTo"
+                    placeholder="">
+  </app-chips-input>
+</div>
+<div class="col">
+  <button mat-raised-button class="btn-upload mt-2" (click)="uploadEmailsTo()">
+    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+  </button>
+</div>
+<div class="offset-sm-1 col-sm-10 mb-2">
+  <div class="invalid-feedback d-block" *ngIf="validationStatus.invalidEmailsTo">
+    Emails To is required
+  </div>
+</div>

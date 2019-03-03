@@ -12,6 +12,10 @@ import { DetailPageComponent } from './conference-detail/detail-page/detail-page
 import { SendEmailComponent } from './conference-detail/send-email/send-email.component';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EmailsToComponent } from './conference-detail/send-email/emails-to/emails-to.component';
+import { InvitationFilesComponent } from './conference-detail/send-email/invitation-files/invitation-files.component';
+import { InviteFileComponent } from './conference-detail/send-email/invite-file/invite-file.component';
 
 
 @NgModule({
@@ -21,11 +25,12 @@ import { SharedComponentsModule } from 'src/app/shared/components/shared-compone
     AddConferenceComponent, 
     AddConferenceDialogComponent, 
     DetailPageComponent, 
-    SendEmailComponent,
+    SendEmailComponent, InviteFileComponent, EmailsToComponent, InvitationFilesComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    CKEditorModule,
     CustomDirectivesModule,
     ConferenceRoutingModule,
     MaterialModule,

@@ -1,0 +1,17 @@
+li {
+    position: relative;
+}
+
+.delete-item-btn {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.delete-item-btn:hover {
+    opacity: 1;
+}
+

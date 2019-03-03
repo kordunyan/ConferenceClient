@@ -29,6 +29,7 @@ export class DetailPageComponent implements OnInit {
       ).subscribe((conferenceResult: Conference) => {
         this.progressBarService.hide();
         this.conference = conferenceResult;
+        console.log(this.conference);
       }, error => this.progressBarService.hide());
   }
 

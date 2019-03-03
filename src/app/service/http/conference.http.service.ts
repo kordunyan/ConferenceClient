@@ -1,11 +1,13 @@
 import { AbstractHttpService } from "./abstract-http.service";
 import { MessageService } from "../message.service";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Conference } from "src/app/domain/conference";
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { NewConferenceRequest } from "src/app/dto/new-conference-equest";
+import { SendConferenceEmailDto } from "src/app/dto/send-conference-email.dto";
+import { EmailTo } from "src/app/domain/email.to";
 
 @Injectable({
     providedIn: 'root',
@@ -45,6 +47,25 @@ export class ConferenceHttpService extends AbstractHttpService {
             .pipe(
                 catchError(this.handleError(`Failed to load conference with id: ${id}`, null))
             );
+    }
+
+    public sendConferenceEmail(sendConferenceEmailDto: SendConferenceEmailDto): Observable<any> {
+        const formData = new FormData();
+        sendConferenceEmailDto.invitationFiles.forEach(file => {
+            formData.append('inviteFiles', file, file.name);    
+        });
+        formData.append('emailContent', sendConferenceEmailDto.emailContent);
+        formData.append('subject', sendConferenceEmailDto.subject);
+        formData.append('id', sendConferenceEmailDto.id.toString());
+        sendConferenceEmailDto.emailsTo.forEach((emailTo: EmailTo) => {
+            formData.append('emailsTo', emailTo.email);
+        });
+        const request = new HttpRequest('POST', this.relatedUrl('/send-email'), formData, {reportProgress: true});
+
+        return this.http.request(request)
+            .pipe(
+                catchError(this.handleTrowableError('Failed to send email', sendConferenceEmailDto))
+             );
     }
 
 }

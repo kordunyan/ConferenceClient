@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
 @Directive({
     selector: '[appUniqueSubjectValidator]',
     providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: UniqueConferenceValidator, multi: true }]
-  })
+})
 export class UniqueConferenceValidator implements AsyncValidator  {
 
     constructor(private conferenceHttpService: ConferenceHttpService) {

@@ -2,7 +2,7 @@
   <mat-chip-list #chipList>
     <mat-chip *ngFor="let value of valuesList" [selectable]="selectable"
              [removable]="removable" (removed)="remove(value)">
-      {{value}}
+      {{getValueFunction(value)}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
     <input [placeholder]="placeholder"

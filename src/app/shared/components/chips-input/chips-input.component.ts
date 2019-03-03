@@ -3,6 +3,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { daLocale } from 'ngx-bootstrap';
 
 export interface Fruit {
   name: string;
@@ -32,6 +33,8 @@ export class ChipsInputComponent implements OnInit {
   @Input() valuesList: string[] = [];
   @Input() errorMessage = '';
   @Input() validators;
+  @Input() getValueFunction = (option) => option;
+  @Input() createOptionFunction = (optionData) => optionData; 
   emailFormControl;
   
 
@@ -51,7 +54,7 @@ export class ChipsInputComponent implements OnInit {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      this.valuesList.push(value.trim());
+      this.valuesList.push(this.createOptionFunction(value.trim()));
     }
     if (input) {
       input.value = '';

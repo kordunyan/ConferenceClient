@@ -15,6 +15,8 @@ import { MaterialModule } from './shared/modules/material.module';
 import { BootstrapModule } from './shared/modules/bootstrap.module';
 import { ConferenceModule } from './components/conference/conference.module';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { UserModule } from './components/user/user.module';
+
 
 
 
@@ -34,7 +36,8 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     AuthModule,
     ConferenceModule,
     SharedComponentsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UserModule
   ],
   providers: [
     httpInterceptorProviders,

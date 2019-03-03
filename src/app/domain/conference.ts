@@ -1,9 +1,15 @@
+import { EmailTo } from "./email.to";
+import { InvitationFile } from "./invitation-file";
+
 export class Conference {
     public id: number;
-    private title: string;
-    private subject: string;
-    private emailContent: string;
-    private dateCreated: string;
+    public title: string;
+    public subject: string;
+    public emailContent: string;
+    public dateCreated: string;
+    public emailSent: boolean;
+    public emailsTo: EmailTo[] = [];
+    public invitationFiles: InvitationFile[] = [];
 
     constructor(id?: number, title?: string, subject?: string, emailContent?: string, dateCreated?: string) {
         this.id = id;

@@ -16,6 +16,13 @@ export class FileUploadHttpService extends AbstractHttpService {
     super(messageService, http, FileUploadHttpService.BASE_PATH);
   }
 
+  public pathExists(path: string): Observable<any> {
+    return this.http.post(this.relatedUrl('/pat-exists'), { path: path }, this.getHttpOptions())
+      .pipe(
+        catchError(this.handleError(`Failed to check if path: [$path] exists`, false))
+      );
+  }
+
 
   public uploadFiles(path: string, files: Set<File>): { [key: string]: { progress: Observable<number> } } {
     const status: { [key: string]: { progress: Observable<number> } }  = {};
